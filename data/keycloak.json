@@ -1,0 +1,8 @@
+{
+  "realm": "Test",
+  "auth-server-url": "http://localhost:9080/auth",
+  "ssl-required": "external",
+  "resource": "nodejs-playground-web",
+  "public-client": true,
+  "confidential-port": 0
+}
