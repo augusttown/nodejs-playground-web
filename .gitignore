@@ -1,12 +1,21 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-
-# typescript compiled js/map files
-src/**/*.js
-src/**/*.js.map
-
 # IDEs and editors
 /.idea
 *.iml
+
+# Logs
+logs
+*.log
+
+# IntelliJ files
+*.iml
+.idea
+
+# External modules
+node_modules
+
+# NPM files
+package-lock.json
+
+# Typescript compiled files
+**/*.js
+**/*.js.map
