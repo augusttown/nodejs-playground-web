@@ -2,6 +2,8 @@
 // load lodash
 import _ from 'lodash';
 //import * as _ from 'lodash';  // TODO: this syntax doesn't work for lodash
+import $ from 'jquery';
+//import * as $ from 'jquery';  // TODO: this syntax doesn't work for lodash
 import * as d3 from 'd3';
 import Keycloak from 'keycloak-js';
 
@@ -26,14 +28,31 @@ function main(): void {
         checkLoginIframe: false
     }).success(function (authenticated) {
         if (authenticated) {
-            console.log("authenticated...");
-            console.log(_.camelCase("Test Lodash"));
-            d3.json('data/data.json').then((data)=>{
-                console.log(data);
-            });
             //
+            console.log("authenticated...");
+            // add logout link
             let logoutLink = document.getElementById("logoutLink");
             logoutLink.setAttribute("href", LOGOUT_URL);
+
+            if ($) {
+                console.log("jQuery package loaded");
+                $.get( "/nodejs-playground-ws/session", (resp) => {
+                    console.log(resp);
+                });
+            }
+
+            if (_) {
+                //console.log(_.camelCase("Package Lodash Loaded"));
+                console.log("lodash package loaded");
+            }
+
+            if (d3) {
+                d3.json('data/data.json').then((data)=>{
+                    console.log("d3 package loaded");
+                    console.log(data);
+                });
+            }
+
         } else {
             console.log("user not authenticate...");
             window.location.href = LOGIN_URL;
