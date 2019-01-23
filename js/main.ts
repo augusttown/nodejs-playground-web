@@ -36,9 +36,6 @@ function main(): void {
 
             if ($) {
                 console.log("jQuery package loaded");
-                $.get( "/nodejs-playground-ws/session", (resp) => {
-                    console.log(resp);
-                });
             }
 
             if (_) {
@@ -52,6 +49,26 @@ function main(): void {
                     console.log(data);
                 });
             }
+
+            if (ga) {
+                console.log("Google Analytics library loaded");
+            }
+
+            try {
+                $.get( "/nodejs-playground-ws/session", (resp) => {
+                    let sessionObj = JSON.parse(resp);
+                    if (sessionObj.user && sessionObj.trackId) {
+                        console.log("Send Google Analytics tracker: " + sessionObj.trackId);
+                        ga('create', sessionObj.trackId, 'auto', { userId: sessionObj.user });
+                        console.log("Send pageview to Google Analytics");
+                        ga('send', 'pageview');
+                    }
+                });
+            } catch(err) {
+                console.log(err.toString());
+            }
+
+
 
         } else {
             console.log("user not authenticate...");

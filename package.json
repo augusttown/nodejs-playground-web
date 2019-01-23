@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@types/d3": "^5.0.0",
+    "@types/google.analytics": "0.0.39",
     "@types/lodash": "^4.14.108",
     "d3": "^5.4.0",
     "jquery": "^3.3.1",
